@@ -9,6 +9,14 @@
     <meta name="theme-color" content="#18181b" />
     <meta name="description" content="Note et Analyse du Budget Organisé et Optimisé" />
     <title>Naboo</title>
+    <script>
+      ;(function () {
+        var t = localStorage.getItem('naboo_theme') || 'system'
+        if (t === 'dark' || (t === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark')
+        }
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>
