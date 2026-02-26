@@ -42,7 +42,10 @@ export default function AppLayout() {
               <div className="px-2 py-1.5 text-sm font-medium">{user?.name}</div>
               <div className="px-2 py-1 text-xs text-muted-foreground">{user?.email}</div>
               <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={handleLogout} className="text-destructive focus:text-destructive">
+              <DropdownMenuItem
+                onClick={handleLogout}
+                className="text-destructive focus:text-destructive"
+              >
                 <LogOut className="mr-2 h-4 w-4" />
                 Se déconnecter
               </DropdownMenuItem>

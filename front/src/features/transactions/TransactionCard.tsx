@@ -14,11 +14,17 @@ interface Props {
 }
 
 function formatAmount(amount: string | number) {
-  return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(Number(amount))
+  return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(
+    Number(amount),
+  )
 }
 
 function formatDate(date: string) {
-  return new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' }).format(new Date(date))
+  return new Intl.DateTimeFormat('fr-FR', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  }).format(new Date(date))
 }
 
 export default function TransactionCard({ transaction: t, readonly, onEdit }: Props) {
@@ -37,13 +43,17 @@ export default function TransactionCard({ transaction: t, readonly, onEdit }: Pr
     <div className="flex items-center gap-3 rounded-lg border bg-card p-3">
       <div
         className="h-9 w-9 rounded-full flex items-center justify-center text-sm font-bold shrink-0"
-        style={{ backgroundColor: t.category?.color ?? (t.type === 'income' ? '#22c55e20' : '#ef444420') }}
+        style={{
+          backgroundColor: t.category?.color ?? (t.type === 'income' ? '#22c55e20' : '#ef444420'),
+        }}
       >
         {t.category?.icon ?? (t.type === 'income' ? '↑' : '↓')}
       </div>
 
       <div className="flex-1 min-w-0">
-        <p className="text-sm font-medium truncate">{t.description ?? (t.type === 'income' ? 'Revenu' : 'Dépense')}</p>
+        <p className="text-sm font-medium truncate">
+          {t.description ?? (t.type === 'income' ? 'Revenu' : 'Dépense')}
+        </p>
         <div className="flex items-center gap-2 mt-0.5">
           <span className="text-xs text-muted-foreground">{formatDate(t.date)}</span>
           {t.category && (
@@ -59,7 +69,12 @@ export default function TransactionCard({ transaction: t, readonly, onEdit }: Pr
       </div>
 
       <div className="flex items-center gap-1">
-        <span className={cn('font-semibold text-sm', t.type === 'income' ? 'text-green-600' : 'text-red-600')}>
+        <span
+          className={cn(
+            'font-semibold text-sm',
+            t.type === 'income' ? 'text-green-600' : 'text-red-600',
+          )}
+        >
           {t.type === 'income' ? '+' : '-'}
           {formatAmount(t.amount)}
         </span>

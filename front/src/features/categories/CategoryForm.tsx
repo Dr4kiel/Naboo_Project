@@ -7,14 +7,28 @@ import { toast } from 'sonner'
 import { api } from '@/lib/api'
 import type { Category } from '@/types/category'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 
 const PRESET_COLORS = [
-  '#ef4444', '#f97316', '#eab308', '#22c55e',
-  '#14b8a6', '#3b82f6', '#8b5cf6', '#ec4899',
-  '#6b7280', '#92400e',
+  '#ef4444',
+  '#f97316',
+  '#eab308',
+  '#22c55e',
+  '#14b8a6',
+  '#3b82f6',
+  '#8b5cf6',
+  '#ec4899',
+  '#6b7280',
+  '#92400e',
 ]
 
 const schema = z.object({
@@ -113,7 +127,10 @@ export default function CategoryForm({ open, onOpenChange, category }: Props) {
                   </FormControl>
                   {field.value && (
                     <div className="flex items-center gap-2 mt-1">
-                      <div className="h-5 w-5 rounded-full border" style={{ backgroundColor: field.value }} />
+                      <div
+                        className="h-5 w-5 rounded-full border"
+                        style={{ backgroundColor: field.value }}
+                      />
                       <span className="text-xs text-muted-foreground">{field.value}</span>
                     </div>
                   )}
@@ -135,7 +152,12 @@ export default function CategoryForm({ open, onOpenChange, category }: Props) {
               )}
             />
             <div className="flex gap-2 pt-2">
-              <Button type="button" variant="outline" className="flex-1" onClick={() => onOpenChange(false)}>
+              <Button
+                type="button"
+                variant="outline"
+                className="flex-1"
+                onClick={() => onOpenChange(false)}
+              >
                 Annuler
               </Button>
               <Button type="submit" className="flex-1" disabled={mutation.isPending}>

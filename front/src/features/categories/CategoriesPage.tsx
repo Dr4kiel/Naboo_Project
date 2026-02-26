@@ -52,7 +52,9 @@ export default function CategoriesPage() {
       <CategoryForm open={addOpen} onOpenChange={setAddOpen} />
       <CategoryForm
         open={!!editCat}
-        onOpenChange={(v) => { if (!v) setEditCat(undefined) }}
+        onOpenChange={(v) => {
+          if (!v) setEditCat(undefined)
+        }}
         category={editCat}
       />
     </div>

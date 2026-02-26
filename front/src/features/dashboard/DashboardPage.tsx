@@ -12,7 +12,9 @@ import TransactionForm from '@/features/transactions/TransactionForm'
 import TransactionCard from '@/features/transactions/TransactionCard'
 
 function formatAmount(amount: string | number) {
-  return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(Number(amount))
+  return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(
+    Number(amount),
+  )
 }
 
 function getCurrentMonthBounds() {
@@ -42,11 +44,17 @@ export default function DashboardPage() {
     return d.getFullYear() === year && d.getMonth() === month
   })
 
-  const income = monthlyTransactions.filter((t) => t.type === 'income').reduce((s, t) => s + Number(t.amount), 0)
-  const expense = monthlyTransactions.filter((t) => t.type === 'expense').reduce((s, t) => s + Number(t.amount), 0)
+  const income = monthlyTransactions
+    .filter((t) => t.type === 'income')
+    .reduce((s, t) => s + Number(t.amount), 0)
+  const expense = monthlyTransactions
+    .filter((t) => t.type === 'expense')
+    .reduce((s, t) => s + Number(t.amount), 0)
   const balance = income - expense
 
-  const recent = [...(transactions ?? [])].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()).slice(0, 5)
+  const recent = [...(transactions ?? [])]
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 5)
 
   const categoryMap = new Map((categories ?? []).map((c) => [c.id, c]))
 

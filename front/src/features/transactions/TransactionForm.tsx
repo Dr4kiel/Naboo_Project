@@ -9,10 +9,23 @@ import { api } from '@/lib/api'
 import type { Transaction } from '@/types/transaction'
 import type { Category } from '@/types/category'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 
 const schema = z.object({
   amount: z.coerce.number().positive('Montant invalide'),
@@ -92,7 +105,9 @@ export default function TransactionForm({ open, onOpenChange, transaction }: Pro
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>{transaction ? 'Modifier la transaction' : 'Nouvelle transaction'}</DialogTitle>
+          <DialogTitle>
+            {transaction ? 'Modifier la transaction' : 'Nouvelle transaction'}
+          </DialogTitle>
         </DialogHeader>
         <Form {...form}>
           <form onSubmit={form.handleSubmit((v) => mutation.mutate(v))} className="space-y-4">
@@ -185,7 +200,12 @@ export default function TransactionForm({ open, onOpenChange, transaction }: Pro
               )}
             />
             <div className="flex gap-2 pt-2">
-              <Button type="button" variant="outline" className="flex-1" onClick={() => onOpenChange(false)}>
+              <Button
+                type="button"
+                variant="outline"
+                className="flex-1"
+                onClick={() => onOpenChange(false)}
+              >
                 Annuler
               </Button>
               <Button type="submit" className="flex-1" disabled={mutation.isPending}>

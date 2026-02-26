@@ -4,13 +4,21 @@ import { Plus, Filter } from 'lucide-react'
 import { api } from '@/lib/api'
 import type { Transaction, TransactionType } from '@/types/transaction'
 import { Button } from '@/components/ui/button'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import { Skeleton } from '@/components/ui/skeleton'
 import TransactionCard from './TransactionCard'
 import TransactionForm from './TransactionForm'
 
 function getMonthLabel(year: number, month: number) {
-  return new Intl.DateTimeFormat('fr-FR', { month: 'long', year: 'numeric' }).format(new Date(year, month))
+  return new Intl.DateTimeFormat('fr-FR', { month: 'long', year: 'numeric' }).format(
+    new Date(year, month),
+  )
 }
 
 export default function TransactionsPage() {
@@ -76,7 +84,10 @@ export default function TransactionsPage() {
       {/* Type filter */}
       <div className="flex items-center gap-2">
         <Filter className="h-4 w-4 text-muted-foreground" />
-        <Select value={typeFilter} onValueChange={(v) => setTypeFilter(v as TransactionType | 'all')}>
+        <Select
+          value={typeFilter}
+          onValueChange={(v) => setTypeFilter(v as TransactionType | 'all')}
+        >
           <SelectTrigger className="w-40">
             <SelectValue />
           </SelectTrigger>
@@ -96,15 +107,13 @@ export default function TransactionsPage() {
           ))}
         </div>
       ) : filtered.length === 0 ? (
-        <p className="text-sm text-muted-foreground text-center py-12">Aucune transaction pour cette période</p>
+        <p className="text-sm text-muted-foreground text-center py-12">
+          Aucune transaction pour cette période
+        </p>
       ) : (
         <div className="space-y-2">
           {filtered.map((t) => (
-            <TransactionCard
-              key={t.id}
-              transaction={t}
-              onEdit={() => setEditTx(t)}
-            />
+            <TransactionCard key={t.id} transaction={t} onEdit={() => setEditTx(t)} />
           ))}
         </div>
       )}
@@ -112,7 +121,9 @@ export default function TransactionsPage() {
       <TransactionForm open={addOpen} onOpenChange={setAddOpen} />
       <TransactionForm
         open={!!editTx}
-        onOpenChange={(v) => { if (!v) setEditTx(undefined) }}
+        onOpenChange={(v) => {
+          if (!v) setEditTx(undefined)
+        }}
         transaction={editTx}
       />
     </div>
