@@ -90,8 +90,7 @@ export default function StatisticsPage() {
     }
   }
 
-  const isCurrentMonth =
-    year === now.getFullYear() && month === now.getMonth()
+  const isCurrentMonth = year === now.getFullYear() && month === now.getMonth()
 
   // 1. 6 derniers mois — données pour BarChart
   const monthlyData = useMemo(() => {
@@ -181,9 +180,7 @@ export default function StatisticsPage() {
       const d = new Date(t.date)
       return d.getFullYear() === year && d.getMonth() === month
     })
-    const income = txs
-      .filter((t) => t.type === 'income')
-      .reduce((s, t) => s + Number(t.amount), 0)
+    const income = txs.filter((t) => t.type === 'income').reduce((s, t) => s + Number(t.amount), 0)
     const expense = txs
       .filter((t) => t.type === 'expense')
       .reduce((s, t) => s + Number(t.amount), 0)
@@ -269,7 +266,11 @@ export default function StatisticsPage() {
                   tickFormatter={(v: number) => formatAmountShort(v)}
                   width={55}
                 />
-                <Tooltip formatter={(value: number | undefined) => (value != null ? formatAmount(value) : '')} />
+                <Tooltip
+                  formatter={(value: number | undefined) =>
+                    value != null ? formatAmount(value) : ''
+                  }
+                />
                 <Legend
                   wrapperStyle={{ fontSize: 12, paddingTop: 8 }}
                   formatter={(value) => (value === 'income' ? 'Revenus' : 'Dépenses')}
@@ -306,7 +307,11 @@ export default function StatisticsPage() {
                         <Cell key={`cell-${index}`} fill={entry.color} />
                       ))}
                     </Pie>
-                    <Tooltip formatter={(value: number | undefined) => (value != null ? formatAmount(value) : '')} />
+                    <Tooltip
+                      formatter={(value: number | undefined) =>
+                        value != null ? formatAmount(value) : ''
+                      }
+                    />
                   </PieChart>
                 </ResponsiveContainer>
               </div>
@@ -361,7 +366,9 @@ export default function StatisticsPage() {
                   width={55}
                 />
                 <Tooltip
-                  formatter={(value: number | undefined) => (value != null ? formatAmount(value) : '')}
+                  formatter={(value: number | undefined) =>
+                    value != null ? formatAmount(value) : ''
+                  }
                   labelFormatter={(label: unknown) => `Jour ${label}`}
                 />
                 <Legend
