@@ -11,6 +11,7 @@ import DashboardPage from '@/features/dashboard/DashboardPage'
 import TransactionsPage from '@/features/transactions/TransactionsPage'
 import CategoriesPage from '@/features/categories/CategoriesPage'
 import StatisticsPage from '@/features/statistics/StatisticsPage'
+import SettingsPage from '@/features/settings/SettingsPage'
 
 export default function App() {
   return (
@@ -26,6 +27,7 @@ export default function App() {
                 <Route path="/transactions" element={<TransactionsPage />} />
                 <Route path="/categories" element={<CategoriesPage />} />
                 <Route path="/statistics" element={<StatisticsPage />} />
+                <Route path="/settings" element={<SettingsPage />} />
               </Route>
             </Route>
             <Route path="*" element={<Navigate to="/" replace />} />
