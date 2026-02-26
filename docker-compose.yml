@@ -6,9 +6,9 @@ services:
     build:
       context: ./front
       dockerfile: Dockerfile
-      target: dev
+      target: prod
     ports:
-      - "${FRONT_PORT}:5173"
+      - "${FRONT_PORT}:80"
     volumes:
       - ./front:/app                  # live code reload (HMR)
       - node_modules:/app/node_modules  # keep container's node_modules
