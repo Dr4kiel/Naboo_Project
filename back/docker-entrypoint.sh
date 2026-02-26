@@ -3,9 +3,13 @@ set -e
 
 # ── Bootstrap .env ────────────────────────────────────────────────────────────
 if [ ! -f .env ]; then
-    echo "[entrypoint] No .env found — copying .env.example"
-    cp .env.example .env
-    php artisan key:generate --no-interaction
+    if [ -f .env.example ]; then
+        echo "[entrypoint] No .env found — copying .env.example"
+        cp .env.example .env
+        php artisan key:generate --no-interaction
+    else
+        echo "[entrypoint] No .env found — relying on environment variables (production mode)"
+    fi
 fi
 
 # ── Writable directories ──────────────────────────────────────────────────────
