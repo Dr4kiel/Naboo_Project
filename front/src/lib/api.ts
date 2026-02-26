@@ -40,7 +40,20 @@ async function request<T>(method: string, path: string, body?: unknown): Promise
     return undefined as T
   }
 
-  return response.json() as Promise<T>
+  const json: unknown = await response.json()
+
+  // Auto-unwrap Laravel Resource envelope { "data": ... }
+  if (
+    json !== null &&
+    typeof json === 'object' &&
+    !Array.isArray(json) &&
+    Object.keys(json).length === 1 &&
+    'data' in json
+  ) {
+    return (json as { data: T }).data
+  }
+
+  return json as T
 }
 
 export const api = {
