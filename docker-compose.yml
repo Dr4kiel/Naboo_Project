@@ -31,6 +31,7 @@ services:
     environment:
       APP_NAME: ${APP_NAME}
       APP_ENV: ${APP_ENV}
+      APP_KEY: ${APP_KEY}
       APP_DEBUG: ${APP_DEBUG}
       APP_URL: ${APP_URL}
       DB_CONNECTION: ${DB_CONNECTION}
@@ -39,6 +40,10 @@ services:
       DB_DATABASE: ${DB_DATABASE}
       DB_USERNAME: ${DB_USERNAME}
       DB_PASSWORD: ${DB_PASSWORD}
+      LOG_LEVEL: ${LOG_LEVEL:-debug}
+      TRUSTED_PROXIES: ${TRUSTED_PROXIES:-}
+      SANCTUM_STATEFUL_DOMAINS: ${SANCTUM_STATEFUL_DOMAINS:-}
+      SESSION_DOMAIN: ${SESSION_DOMAIN:-}
     depends_on:
       db:
         condition: service_healthy
@@ -52,7 +57,7 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: ${DB_DATABASE}
     ports:
-      - "${DB_PORT_HOST}:5432"
+      - "127.0.0.1:${DB_PORT_HOST:-5432}:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
