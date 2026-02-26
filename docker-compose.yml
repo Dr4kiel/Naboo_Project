@@ -1,14 +1,19 @@
 services:
 
-  # ── Frontend ─────────────────────────────────────────────────────────────────
-  # TODO: configure once front/ is scaffolded
+  # ── Frontend (Vite dev server) ────────────────────────────────────────────────
   front:
     container_name: naboo-front
-    profiles: ["front"]
     build:
       context: ./front
+      dockerfile: Dockerfile
+      target: dev
     ports:
       - "${FRONT_PORT}:5173"
+    volumes:
+      - ./front:/app                  # live code reload (HMR)
+      - node_modules:/app/node_modules  # keep container's node_modules
+    environment:
+      VITE_API_URL: ${VITE_API_URL}
     depends_on:
       - api
 
@@ -60,6 +65,7 @@ services:
 volumes:
   postgres_data:
   vendor:
+  node_modules:
 
 networks:
   default:
