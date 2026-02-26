@@ -1,15 +1,16 @@
-FROM php:8.4-cli-alpine
-
-# php-extension-installer — gère les deps OS automatiquement (Alpine-version-agnostic)
-COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
+FROM php:8.4-cli
 
 # System deps + PHP extensions
-RUN apk add --no-cache unzip \
-    && install-php-extensions \
+RUN apt-get update && apt-get install -y \
+        libpq-dev \
+        unzip \
+        netcat-openbsd \
+    && docker-php-ext-install \
         pdo_pgsql \
         bcmath \
         pcntl \
-        opcache
+        opcache \
+    && rm -rf /var/lib/apt/lists/*
 
 # Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
