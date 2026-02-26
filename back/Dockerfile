@@ -1,10 +1,11 @@
 FROM php:8.4-cli-alpine
 
+# php-extension-installer — gère les deps OS automatiquement (Alpine-version-agnostic)
+COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
+
 # System deps + PHP extensions
-RUN apk add --no-cache \
-        libpq-dev \
-        unzip \
-    && docker-php-ext-install \
+RUN apk add --no-cache unzip \
+    && install-php-extensions \
         pdo_pgsql \
         bcmath \
         pcntl \
