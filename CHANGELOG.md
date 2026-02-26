@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.1](https://github.com/Dr4kiel/Naboo_Project/compare/v1.0.0...v1.0.1) (2026-02-26)
+
+
+### Features
+
+* **front:** add PWA configuration ([933f9ad](https://github.com/Dr4kiel/Naboo_Project/commit/933f9ad4d95564b23d5f88b65e989dd3f64b6ddb)), closes [#18181](https://github.com/Dr4kiel/Naboo_Project/issues/18181)
+* **front:** add settings page with theme switcher ([75cb53d](https://github.com/Dr4kiel/Naboo_Project/commit/75cb53d10f1358f18db7c24968091340cbbfa4be))
+
+
+### Bug Fixes
+
+* **front:** update frontend service to use production settings ([b796a4c](https://github.com/Dr4kiel/Naboo_Project/commit/b796a4c72b6407e5a9066b5d6676f10f20016933))
+
 ## 1.0.0 (2026-02-26)
 
 
