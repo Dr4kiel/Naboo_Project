@@ -2,7 +2,7 @@ FROM php:8.4-cli-alpine
 
 # System deps + PHP extensions
 RUN apk add --no-cache \
-        postgresql-dev \
+        libpq-dev \
         unzip \
     && docker-php-ext-install \
         pdo_pgsql \
