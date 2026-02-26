@@ -1,5 +1,13 @@
 import { Outlet, NavLink, useNavigate } from 'react-router-dom'
-import { LayoutDashboard, ArrowLeftRight, Tag, BarChart2, Settings, LogOut, User } from 'lucide-react'
+import {
+  LayoutDashboard,
+  ArrowLeftRight,
+  Tag,
+  BarChart2,
+  Settings,
+  LogOut,
+  User,
+} from 'lucide-react'
 import { useAuth } from '@/hooks/useAuth'
 import {
   DropdownMenu,
