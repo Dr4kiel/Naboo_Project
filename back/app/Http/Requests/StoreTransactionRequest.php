@@ -20,10 +20,10 @@ class StoreTransactionRequest extends FormRequest
                 'integer',
                 Rule::exists('categories', 'id')->where('user_id', $this->user()->id),
             ],
-            'amount'      => 'required|numeric|min:0.01',
-            'type'        => 'required|in:income,expense',
+            'amount' => 'required|numeric|min:0.01',
+            'type' => 'required|in:income,expense',
             'description' => 'nullable|string|max:500',
-            'date'        => 'required|date',
+            'date' => 'required|date',
         ];
     }
 }

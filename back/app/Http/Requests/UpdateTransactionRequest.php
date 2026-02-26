@@ -20,10 +20,10 @@ class UpdateTransactionRequest extends FormRequest
                 'integer',
                 Rule::exists('categories', 'id')->where('user_id', $this->user()->id),
             ],
-            'amount'      => 'sometimes|required|numeric|min:0.01',
-            'type'        => 'sometimes|required|in:income,expense',
+            'amount' => 'sometimes|required|numeric|min:0.01',
+            'type' => 'sometimes|required|in:income,expense',
             'description' => 'nullable|string|max:500',
-            'date'        => 'sometimes|required|date',
+            'date' => 'sometimes|required|date',
         ];
     }
 }
