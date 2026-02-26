@@ -33,3 +33,61 @@ Naboo ou **N**ote et **A**nalyse du **B**udget **O**rganisé et **O**ptimisé es
 - **Mobile-first** : L'application doit être conçue en priorité pour les appareils mobiles, avec une interface responsive qui s'adapte à différentes tailles d'écran.
 
 ## Installation
+
+### Prérequis
+
+- [Docker](https://docs.docker.com/get-docker/) et Docker Compose
+- [Git](https://git-scm.com/)
+
+### Démarrage avec Docker (recommandé)
+
+```bash
+# 1. Cloner le dépôt
+git clone <url-du-repo>
+cd Naboo_Project
+
+# 2. Créer le fichier d'environnement
+cp .env.example .env
+
+# 3. Démarrer tous les services (premier lancement : ~1-2 min)
+docker compose up --build -d
+```
+
+Les migrations sont exécutées automatiquement au démarrage de l'API.
+
+| Service    | URL                      |
+|------------|--------------------------|
+| Frontend   | http://localhost:5173    |
+| API        | http://localhost:8000    |
+| PostgreSQL | localhost:5432           |
+
+```bash
+# Arrêter les services
+docker compose down
+
+# Suivre les logs de l'API
+docker compose logs -f api
+```
+
+### Développement local (sans Docker)
+
+Nécessite PHP 8.4, Composer, Node.js 22 et une instance PostgreSQL.
+
+**Backend**
+
+```bash
+cd back
+composer install
+cp .env.example .env   # puis adapter les variables DB_*
+php artisan migrate
+php artisan serve
+```
+
+**Frontend**
+
+```bash
+cd front
+npm install
+cp .env.example .env   # VITE_API_URL=http://localhost:8000
+npm run dev
+```
