@@ -1,6 +1,6 @@
 services:
 
-  # ── Frontend (Vite dev server) ────────────────────────────────────────────────
+  # ── Frontend ───────────────────────────────────────────────────────────────
   front:
     container_name: naboo-front
     build:
@@ -9,15 +9,12 @@ services:
       target: prod
     ports:
       - "${FRONT_PORT}:80"
-    volumes:
-      - ./front:/app                  # live code reload (HMR)
-      - node_modules:/app/node_modules  # keep container's node_modules
     environment:
       VITE_API_URL: ${VITE_API_URL}
     depends_on:
       - api
 
-  # ── API (Laravel) ─────────────────────────────────────────────────────────────
+  # ── API (Laravel) ──────────────────────────────────────────────────────────
   api:
     container_name: naboo-api
     build:
@@ -25,9 +22,6 @@ services:
       dockerfile: Dockerfile
     ports:
       - "${API_PORT}:8000"
-    volumes:
-      - ./back:/var/www/html       # live code reload
-      - vendor:/var/www/html/vendor  # keep container's vendor (built for PHP 8.4)
     environment:
       APP_NAME: ${APP_NAME}
       APP_ENV: ${APP_ENV}
@@ -48,7 +42,7 @@ services:
       db:
         condition: service_healthy
 
-  # ── Database (PostgreSQL) ─────────────────────────────────────────────────────
+  # ── Database (PostgreSQL) ──────────────────────────────────────────────────
   db:
     container_name: naboo-db
     image: postgres:17
@@ -69,8 +63,6 @@ services:
 
 volumes:
   postgres_data:
-  vendor:
-  node_modules:
 
 networks:
   default:

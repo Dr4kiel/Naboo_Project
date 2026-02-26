@@ -1,0 +1,15 @@
+services:
+
+  front:
+    volumes:
+      - ./front:/app
+      - node_modules:/app/node_modules
+
+  api:
+    volumes:
+      - ./back:/var/www/html
+      - vendor:/var/www/html/vendor
+
+volumes:
+  vendor:
+  node_modules:
