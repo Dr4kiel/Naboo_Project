@@ -1,5 +1,5 @@
 import { Outlet, NavLink, useNavigate } from 'react-router-dom'
-import { LayoutDashboard, ArrowLeftRight, Tag, LogOut, User } from 'lucide-react'
+import { LayoutDashboard, ArrowLeftRight, Tag, BarChart2, LogOut, User } from 'lucide-react'
 import { useAuth } from '@/hooks/useAuth'
 import {
   DropdownMenu,
@@ -12,8 +12,9 @@ import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
 const navItems = [
-  { to: '/', label: 'Tableau de bord', icon: LayoutDashboard },
+  { to: '/', label: 'Accueil', icon: LayoutDashboard },
   { to: '/transactions', label: 'Transactions', icon: ArrowLeftRight },
+  { to: '/statistics', label: 'Statistiques', icon: BarChart2 },
   { to: '/categories', label: 'Catégories', icon: Tag },
 ]
 
