@@ -1,0 +1,66 @@
+services:
+
+  # ── Frontend ─────────────────────────────────────────────────────────────────
+  # TODO: configure once front/ is scaffolded
+  front:
+    container_name: naboo-front
+    profiles: ["front"]
+    build:
+      context: ./front
+    ports:
+      - "${FRONT_PORT}:5173"
+    depends_on:
+      - api
+
+  # ── API (Laravel) ─────────────────────────────────────────────────────────────
+  api:
+    container_name: naboo-api
+    build:
+      context: ./back
+      dockerfile: Dockerfile
+    ports:
+      - "${API_PORT}:8000"
+    volumes:
+      - ./back:/var/www/html       # live code reload
+      - vendor:/var/www/html/vendor  # keep container's vendor (built for PHP 8.4)
+    environment:
+      APP_NAME: ${APP_NAME}
+      APP_ENV: ${APP_ENV}
+      APP_DEBUG: ${APP_DEBUG}
+      APP_URL: ${APP_URL}
+      DB_CONNECTION: ${DB_CONNECTION}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_DATABASE: ${DB_DATABASE}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+    depends_on:
+      db:
+        condition: service_healthy
+
+  # ── Database (PostgreSQL) ─────────────────────────────────────────────────────
+  db:
+    container_name: naboo-db
+    image: postgres:17
+    environment:
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_DATABASE}
+    ports:
+      - "${DB_PORT_HOST}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME} -d ${DB_DATABASE}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
+volumes:
+  postgres_data:
+  vendor:
+
+networks:
+  default:
+    driver: bridge
