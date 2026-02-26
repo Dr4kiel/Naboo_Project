@@ -40,4 +40,4 @@ php artisan storage:link --no-interaction 2>/dev/null || true
 
 # ── Start dev server ──────────────────────────────────────────────────────────
 echo "[entrypoint] Starting Laravel on 0.0.0.0:8000"
-exec php artisan serve --host=0.0.0.0 --port=8000
+exec php artisan serve --host=0.0.0.0 --port=8000 --no-reload
