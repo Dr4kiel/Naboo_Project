@@ -13,7 +13,7 @@ class AuthController extends Controller
 {
     public function register(Request $request): JsonResponse
     {
-        if (env('REGISTRATION_ENABLED', 'true') !== 'true') {
+        if (! config('naboo.registration_enabled')) {
             return response()->json(['message' => 'Les inscriptions sont désactivées.'], 403);
         }
 
