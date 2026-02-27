@@ -43,7 +43,11 @@ interface Props {
   recurringTransaction?: RecurringTransaction
 }
 
-export default function RecurringTransactionForm({ open, onOpenChange, recurringTransaction }: Props) {
+export default function RecurringTransactionForm({
+  open,
+  onOpenChange,
+  recurringTransaction,
+}: Props) {
   const qc = useQueryClient()
 
   const { data: categories } = useQuery({

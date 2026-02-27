@@ -43,9 +43,15 @@ export default function RecurringTransactionsPage() {
           {!isLoading && (
             <p className="text-sm text-muted-foreground mt-0.5">
               Bilan mensuel :{' '}
-              <span className={totalMonthly >= 0 ? 'text-green-600 font-medium' : 'text-red-600 font-medium'}>
+              <span
+                className={
+                  totalMonthly >= 0 ? 'text-green-600 font-medium' : 'text-red-600 font-medium'
+                }
+              >
                 {totalMonthly >= 0 ? '+' : ''}
-                {new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(totalMonthly)}
+                {new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(
+                  totalMonthly,
+                )}
               </span>
             </p>
           )}

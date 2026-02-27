@@ -35,8 +35,7 @@ export default function RecurringTransactionCard({ recurringTransaction: rt, onE
   })
 
   const toggleMutation = useMutation({
-    mutationFn: () =>
-      api.put(`/api/recurring-transactions/${rt.id}`, { is_active: !rt.is_active }),
+    mutationFn: () => api.put(`/api/recurring-transactions/${rt.id}`, { is_active: !rt.is_active }),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['recurring-transactions'] })
       toast.success(rt.is_active ? 'Prélèvement suspendu' : 'Prélèvement activé')
@@ -45,7 +44,12 @@ export default function RecurringTransactionCard({ recurringTransaction: rt, onE
   })
 
   return (
-    <div className={cn('flex items-center gap-3 rounded-lg border bg-card p-3', !rt.is_active && 'opacity-60')}>
+    <div
+      className={cn(
+        'flex items-center gap-3 rounded-lg border bg-card p-3',
+        !rt.is_active && 'opacity-60',
+      )}
+    >
       <div
         className="h-9 w-9 rounded-full flex items-center justify-center text-sm font-bold shrink-0"
         style={{
