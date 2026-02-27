@@ -13,6 +13,10 @@ class AuthController extends Controller
 {
     public function register(Request $request): JsonResponse
     {
+        if (env('REGISTRATION_ENABLED', 'true') !== 'true') {
+            return response()->json(['message' => 'Les inscriptions sont désactivées.'], 403);
+        }
+
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',

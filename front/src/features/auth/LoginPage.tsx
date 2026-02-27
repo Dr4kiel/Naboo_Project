@@ -3,6 +3,8 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { useMutation } from '@tanstack/react-query'
 import { Link, useNavigate } from 'react-router-dom'
+
+const registrationEnabled = import.meta.env.VITE_REGISTRATION_ENABLED !== 'false'
 import { toast } from 'sonner'
 import { useAuth } from '@/hooks/useAuth'
 import { ApiException } from '@/lib/api'
@@ -85,12 +87,14 @@ export default function LoginPage() {
               </Button>
             </form>
           </Form>
-          <p className="mt-4 text-center text-sm text-muted-foreground">
-            Pas encore de compte ?{' '}
-            <Link to="/register" className="underline underline-offset-4">
-              S'inscrire
-            </Link>
-          </p>
+          {registrationEnabled && (
+            <p className="mt-4 text-center text-sm text-muted-foreground">
+              Pas encore de compte ?{' '}
+              <Link to="/register" className="underline underline-offset-4">
+                S'inscrire
+              </Link>
+            </p>
+          )}
         </CardContent>
       </Card>
     </div>
