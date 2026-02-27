@@ -4,6 +4,7 @@ import {
   ArrowLeftRight,
   Tag,
   BarChart2,
+  RefreshCw,
   Settings,
   LogOut,
   User,
@@ -22,6 +23,7 @@ import { cn } from '@/lib/utils'
 const navItems = [
   { to: '/', label: 'Accueil', icon: LayoutDashboard },
   { to: '/transactions', label: 'Transactions', icon: ArrowLeftRight },
+  { to: '/recurring', label: 'Récurrents', icon: RefreshCw },
   { to: '/statistics', label: 'Statistiques', icon: BarChart2 },
   { to: '/categories', label: 'Catégories', icon: Tag },
 ]
