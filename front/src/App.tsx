@@ -12,6 +12,7 @@ import TransactionsPage from '@/features/transactions/TransactionsPage'
 import CategoriesPage from '@/features/categories/CategoriesPage'
 import StatisticsPage from '@/features/statistics/StatisticsPage'
 import SettingsPage from '@/features/settings/SettingsPage'
+import RecurringTransactionsPage from '@/features/recurring-transactions/RecurringTransactionsPage'
 
 const registrationEnabled = import.meta.env.VITE_REGISTRATION_ENABLED !== 'false'
 
@@ -32,6 +33,7 @@ export default function App() {
                 <Route path="/transactions" element={<TransactionsPage />} />
                 <Route path="/categories" element={<CategoriesPage />} />
                 <Route path="/statistics" element={<StatisticsPage />} />
+                <Route path="/recurring" element={<RecurringTransactionsPage />} />
                 <Route path="/settings" element={<SettingsPage />} />
               </Route>
             </Route>
