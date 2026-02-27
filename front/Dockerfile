@@ -13,7 +13,9 @@ CMD ["npm", "run", "dev", "--", "--host"]
 # ── build (production bundle) ─────────────────────────────────────────────────
 FROM deps AS build
 ARG VITE_API_URL
+ARG VITE_REGISTRATION_ENABLED
 ENV VITE_API_URL=${VITE_API_URL}
+ENV VITE_REGISTRATION_ENABLED=${VITE_REGISTRATION_ENABLED}
 COPY . .
 RUN npm run build
 

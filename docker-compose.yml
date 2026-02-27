@@ -9,6 +9,7 @@ services:
       target: prod
       args:
         VITE_API_URL: ${VITE_API_URL}
+        VITE_REGISTRATION_ENABLED: ${REGISTRATION_ENABLED:-true}
     ports:
       - "${FRONT_PORT}:80"
     environment:
@@ -40,6 +41,7 @@ services:
       TRUSTED_PROXIES: ${TRUSTED_PROXIES:-}
       SANCTUM_STATEFUL_DOMAINS: ${SANCTUM_STATEFUL_DOMAINS:-}
       SESSION_DOMAIN: ${SESSION_DOMAIN:-}
+      REGISTRATION_ENABLED: ${REGISTRATION_ENABLED:-true}
     depends_on:
       db:
         condition: service_healthy
