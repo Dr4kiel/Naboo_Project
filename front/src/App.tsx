@@ -13,6 +13,8 @@ import CategoriesPage from '@/features/categories/CategoriesPage'
 import StatisticsPage from '@/features/statistics/StatisticsPage'
 import SettingsPage from '@/features/settings/SettingsPage'
 
+const registrationEnabled = import.meta.env.VITE_REGISTRATION_ENABLED !== 'false'
+
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
@@ -20,7 +22,10 @@ export default function App() {
         <AuthProvider>
           <Routes>
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
+            <Route
+              path="/register"
+              element={registrationEnabled ? <RegisterPage /> : <Navigate to="/login" replace />}
+            />
             <Route element={<ProtectedRoute />}>
               <Route element={<AppLayout />}>
                 <Route path="/" element={<DashboardPage />} />
