@@ -7,12 +7,16 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class RecurringTransaction extends Model
 {
-    protected $fillable = ['user_id', 'category_id', 'amount', 'type', 'description', 'day_of_month', 'is_active'];
+    protected $fillable = [
+        'user_id', 'category_id', 'amount', 'type',
+        'description', 'day_of_month', 'is_active', 'last_processed_at',
+    ];
 
     protected $casts = [
         'amount' => 'decimal:2',
         'day_of_month' => 'integer',
         'is_active' => 'boolean',
+        'last_processed_at' => 'datetime',
     ];
 
     public function user(): BelongsTo

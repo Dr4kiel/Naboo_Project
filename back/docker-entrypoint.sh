@@ -42,6 +42,13 @@ php artisan migrate --force --no-interaction
 # ── Storage symlink (idempotent) ──────────────────────────────────────────────
 php artisan storage:link --no-interaction 2>/dev/null || true
 
+# ── Export container env for cron jobs ────────────────────────────────────────
+printenv | sed 's/^\(.*\)=\(.*\)$/export \1="\2"/' > /etc/cron.env
+
+# ── Start cron daemon (background) ────────────────────────────────────────────
+echo "[entrypoint] Starting cron daemon"
+service cron start
+
 # ── Start dev server ──────────────────────────────────────────────────────────
 echo "[entrypoint] Starting Laravel on 0.0.0.0:8000"
 exec php artisan serve --host=0.0.0.0 --port=8000 --no-reload

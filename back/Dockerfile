@@ -5,6 +5,7 @@ RUN apt-get update && apt-get install -y \
         libpq-dev \
         unzip \
         netcat-openbsd \
+        cron \
     && docker-php-ext-install \
         pdo_pgsql \
         bcmath \
@@ -23,6 +24,10 @@ RUN composer install --no-interaction --no-scripts --prefer-dist
 
 # Copy application source
 COPY . .
+
+# Install crontab for the Laravel scheduler
+COPY crontab-laravel /etc/cron.d/laravel-scheduler
+RUN chmod 0644 /etc/cron.d/laravel-scheduler
 
 # Generate optimized autoloader (no artisan, no DB needed)
 RUN composer dump-autoload --optimize --no-scripts
