@@ -27,12 +27,12 @@ class RecurringTransactionService
                 }
 
                 Transaction::create([
-                    'user_id'     => $recurring->user_id,
+                    'user_id' => $recurring->user_id,
                     'category_id' => $recurring->category_id,
-                    'amount'      => $recurring->amount,
-                    'type'        => $recurring->type,
+                    'amount' => $recurring->amount,
+                    'type' => $recurring->type,
                     'description' => $recurring->description,
-                    'date'        => $date->toDateString(),
+                    'date' => $date->toDateString(),
                 ]);
 
                 $recurring->update(['last_processed_at' => $date]);

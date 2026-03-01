@@ -13,9 +13,9 @@ class RecurringTransaction extends Model
     ];
 
     protected $casts = [
-        'amount'            => 'decimal:2',
-        'day_of_month'      => 'integer',
-        'is_active'         => 'boolean',
+        'amount' => 'decimal:2',
+        'day_of_month' => 'integer',
+        'is_active' => 'boolean',
         'last_processed_at' => 'datetime',
     ];
 
