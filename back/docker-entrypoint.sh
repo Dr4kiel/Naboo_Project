@@ -43,7 +43,7 @@ php artisan migrate --force --no-interaction
 php artisan storage:link --no-interaction 2>/dev/null || true
 
 # ── Export container env for cron jobs ────────────────────────────────────────
-printenv | sed 's/^\(.*\)=\(.*\)$/export \1="\2"/' > /etc/cron.env
+printenv | sed 's/^\([^=]*\)=\(.*\)$/export \1="\2"/' > /etc/cron.env
 
 # ── Start cron daemon (background) ────────────────────────────────────────────
 echo "[entrypoint] Starting cron daemon"
